@@ -2,7 +2,7 @@
 
 > **Date:** 2026-05-27
 > **Status:** Accepted
-> **Scope of this file:** public summary. The full internal ADR-0016 lives in the private `gaekju-core` repo and includes internal strategy, costing, and time-sensitive regulatory citations that are out of scope for public publication.
+> **Scope of this file:** public summary. The full internal ADR remains in the private `gaekju-core` repo; this file is the public summary.
 
 ## Decision
 

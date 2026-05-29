@@ -156,8 +156,8 @@ contract Settlement is ISettlement, Initializable, UUPSUpgradeable, AccessContro
         // 9. Vault deltas (fills-conservation enforced inside Vault).
         vault.applyBatchDelta(pub.batchNonce, blob.balanceDeltas);
 
-        // 10. FundingRate mid sink is a minimal stub until Phase 5.5 (see
-        //     docs/plans/2026-04-22-contracts-v2.md).
+        // 10. Mid-price update hook. Phase 1 perp-era artifact retained only for
+        //     v0.1 build compatibility; removed in Phase 2 per ADR-0017.
         _dispatchMidPriceUpdates(blob.midPriceUpdates);
 
         // 11. Position state.
