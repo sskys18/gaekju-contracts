@@ -5,7 +5,7 @@ ZK-settlement-layer contracts for Korean tokenized securities (STO), targeting G
 > **Version:** v0.1 (initial public release, pre-audit).
 > **Status:** Pre-mainnet. Testnet deploy 2026-05-29. Pre-audit. Use at your own risk.
 > **License:** MIT.
-> **Pivot context:** This codebase began as a perpetual-DEX project (ADR-0001 – ADR-0015). It pivoted to RWA settlement on 2026-05-27 per [ADR-0016](./ADR-0016-pivot.md). Perp-era contracts (`PositionManager`, `MarginEngine`, `LiquidationEngine`) are **Phase 1 baseline** and will be removed during the Phase 2 RWA refactor — see [ADR-0017 § Phase 2 public summary](./ADR-0017-repo-split.md#phase-2-public-summary) for what to expect.
+> **Pivot context:** This codebase originated as a perpetual-DEX project and pivoted to RWA settlement on 2026-05-27. Perp-era contracts (`PositionManager`, `MarginEngine`, `LiquidationEngine`) are **Phase 1 baseline** and will be removed during the Phase 2 RWA refactor.
 
 ## What this is
 
@@ -58,7 +58,7 @@ Off-chain components (sequencer in development, prover planned) live in a privat
 ## Disclosures
 
 - **Unaudited.** Testnet only. No production use.
-- **Phase 1 contracts (perp) present but deprecated** — see ADR-0016.
+- **Phase 1 contracts (perp) present but deprecated** — removed in Phase 2.
 - **Active refactor.** Public `main` will track Phase 2 work.
 
 ## Contact

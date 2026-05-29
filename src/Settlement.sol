@@ -12,8 +12,8 @@ import { IVault } from "./interfaces/IVault.sol";
 import { IPositionManager } from "./interfaces/IPositionManager.sol";
 import { IMarketFactory } from "./interfaces/IMarketFactory.sol";
 
-/// @notice Single on-chain endpoint for proved matching batches (ADR-0012,
-///         spec §15). Verifies an SP1 proof over `BatchPublicInputs`, applies
+/// @notice Single on-chain endpoint for proved matching batches (spec §15).
+///         Verifies an SP1 proof over `BatchPublicInputs`, applies
 ///         the state delta to Vault/PM, and stores resolved forced-intent
 ///         outcomes. vkey rotation via pause-and-drain (spec §15.5).
 contract Settlement is ISettlement, Initializable, UUPSUpgradeable, AccessControlUpgradeable, PausableUpgradeable {
@@ -40,7 +40,7 @@ contract Settlement is ISettlement, Initializable, UUPSUpgradeable, AccessContro
     error UnauthorizedForwarder();
 
     // ── Constants ────────────────────────────────────────────────────────
-    uint64 public constant FORCE_INCLUDE_N = 3; // ADR-0014, spec §15.2
+    uint64 public constant FORCE_INCLUDE_N = 3; // spec §15.2
     uint64 public constant ROTATION_TIMELOCK = 24 hours; // spec §15.5
     uint64 public constant ROTATION_FORCE_TIMELOCK = 7 days; // spec §15.5
     uint256 public constant FORCE_INCLUDE_FEE = 1e18; // 1 USDC in 18-dec
@@ -53,7 +53,7 @@ contract Settlement is ISettlement, Initializable, UUPSUpgradeable, AccessContro
     ISP1Verifier public verifier;
     IVault public vault;
     IPositionManager public positionManager;
-    address public fundingRate; // v0.1 compatibility sink; removed in Phase 2 per ADR-0017
+    address public fundingRate; // v0.1 compatibility sink; removed in Phase 2
     IMarketFactory public marketFactory;
     address public router;
 
@@ -157,7 +157,7 @@ contract Settlement is ISettlement, Initializable, UUPSUpgradeable, AccessContro
         vault.applyBatchDelta(pub.batchNonce, blob.balanceDeltas);
 
         // 10. Mid-price update hook. Phase 1 perp-era artifact retained only for
-        //     v0.1 build compatibility; removed in Phase 2 per ADR-0017.
+        //     v0.1 build compatibility; removed in Phase 2.
         _dispatchMidPriceUpdates(blob.midPriceUpdates);
 
         // 11. Position state.
@@ -218,7 +218,7 @@ contract Settlement is ISettlement, Initializable, UUPSUpgradeable, AccessContro
 
     function _dispatchMidPriceUpdates(MidPriceUpdate[] memory updates) internal view {
         // Phase 1 compatibility no-op. Mid-price updates are retained only to
-        // keep the v0.1 batch schema/build stable; removed in Phase 2 per ADR-0017.
+        // keep the v0.1 batch schema/build stable; removed in Phase 2.
         updates; // silence unused-param warning
         fundingRate; // reserved for v0.1 storage compatibility
     }
