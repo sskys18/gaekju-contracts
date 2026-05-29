@@ -53,7 +53,7 @@ contract Settlement is ISettlement, Initializable, UUPSUpgradeable, AccessContro
     ISP1Verifier public verifier;
     IVault public vault;
     IPositionManager public positionManager;
-    address public fundingRate; // minimal placeholder until Phase 5.5
+    address public fundingRate; // v0.1 compatibility sink; removed in Phase 2 per ADR-0017
     IMarketFactory public marketFactory;
     address public router;
 
@@ -217,10 +217,10 @@ contract Settlement is ISettlement, Initializable, UUPSUpgradeable, AccessContro
     }
 
     function _dispatchMidPriceUpdates(MidPriceUpdate[] memory updates) internal view {
-        // Phase 5.5: FundingRate.updateSequencerMid(marketId, mid). Ignore
-        // for now — no-op stub so Settlement can ship ahead of FundingRate.
+        // Phase 1 compatibility no-op. Mid-price updates are retained only to
+        // keep the v0.1 batch schema/build stable; removed in Phase 2 per ADR-0017.
         updates; // silence unused-param warning
-        fundingRate; // reserved slot for sink wiring
+        fundingRate; // reserved for v0.1 storage compatibility
     }
 
     // ── forceInclude (spec §15.2/§15.3.4) ────────────────────────────────
